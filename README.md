@@ -91,7 +91,54 @@ Common ALU operations included in this design are:
 // Write your ALU design code here using
 // - Enumerated Data Types for ALU operations
 // - Case Statements for operation selection
+// ========================================================
+// ALU Design using Enumerated Data Types and Case Statements
+// ========================================================
 
+// Module declaration
+module alu_enum #(parameter WIDTH = 4) (
+    input  logic [WIDTH-1:0] A, B,
+    input  logic <define_operation_enum_here>, // Enumerated operation selector
+    output logic [WIDTH-1:0] ALU_Out,
+    output logic CarryOut
+);
+
+    // -----------------------------------------
+    // Define Enumerated Data Type for ALU Ops
+    // -----------------------------------------
+    // typedef enum logic [2:0] {
+    //     ADD = 3'b000,
+    //     SUB = 3'b001,
+    //     AND = 3'b010,
+    //     OR  = 3'b011,
+    //     XOR = 3'b100,
+    //     NOT = 3'b101,
+    //     SHL = 3'b110,
+    //     SHR = 3'b111
+    // } alu_ops_t;
+
+    // -----------------------------------------
+    // Internal signals
+    // -----------------------------------------
+    // logic [WIDTH:0] tmp;
+
+    // -----------------------------------------
+    // ALU operation using case statement
+    // -----------------------------------------
+    always_comb begin
+        // case (operation)
+        //     ADD: tmp = A + B;
+        //     SUB: tmp = A - B;
+        //     AND: tmp = A & B;
+        //     ...
+        //     default: tmp = 0;
+        // endcase
+    end
+
+    // assign ALU_Out = tmp[WIDTH-1:0];
+    // assign CarryOut = tmp[WIDTH];
+
+endmodule
 ```
 ---
 
@@ -99,7 +146,43 @@ Common ALU operations included in this design are:
 ```systemverilog
 
 // Write your ALU testbench code here
+// ========================================================
+// Testbench for ALU using Enumerated Data Types
+// ========================================================
 
+module alu_enum_tb;
+
+    // -----------------------------------------
+    // Testbench signals
+    // -----------------------------------------
+    logic [3:0] A, B;
+    logic <define_operation_enum_here>;   // Enumerated operation selector
+    logic [3:0] ALU_Out;
+    logic CarryOut;
+
+    // -----------------------------------------
+    // Instantiate ALU
+    // -----------------------------------------
+    alu_enum #(4) uut (
+        .A(A),
+        .B(B),
+        .operation(<enum_signal>),
+        .ALU_Out(ALU_Out),
+        .CarryOut(CarryOut)
+    );
+
+    // -----------------------------------------
+    // Apply test vectors
+    // -----------------------------------------
+    initial begin
+        // Example:
+        // A = 4'b0011; B = 4'b0001; operation = ADD; #10;
+        // A = 4'b0100; B = 4'b0001; operation = SUB; #10;
+        // ...
+        $stop; // End of simulation
+    end
+
+endmodule
 ```
 ### Simulation Output
 
