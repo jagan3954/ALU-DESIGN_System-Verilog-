@@ -184,11 +184,15 @@ module alu_enum_tb;
 
 endmodule
 ```
+---
+
 ### Simulation Output
 
 The simulation is carried out using ModelSim 2020.1.
 
 (Insert waveform screenshot here after running simulation in ModelSim)
+
+---
 
 ### Result
 
