@@ -24,6 +24,8 @@ Common ALU operations include:
 
 The ALU plays a crucial role in executing instructions in microprocessors and digital systems.
 
+---
+
 ## Features
 - Designed in **SystemVerilog** for clarity and modularity  
 - Supports:
@@ -33,6 +35,7 @@ The ALU plays a crucial role in executing instructions in microprocessors and di
 - Parameterized design for scalability  
 - Testbench for functional verification  
 - Compatible with **ModelSim 2020.1**  
+
 ---
 
 ## Procedure  
@@ -78,7 +81,7 @@ The ALU plays a crucial role in executing instructions in microprocessors and di
 
 9. **Save Results**  
    - Save the waveform (`.wlf` file) for documentation.  
-   
+
 ---
 
 ## SystemVerilog Code  
@@ -92,23 +95,41 @@ module alu #(parameter WIDTH = 4) (
     output logic CarryOut
 );
 
-    
+    logic [WIDTH:0] tmp;
 
-endmodule
+// Write your ALU design code here
 
+```
 ---
 
-## Testbench Code
+### ALU Testbench (`alu_tb.sv`)
+```systemverilog
+module alu_tb;
 
-## Simulation Output
+    logic [3:0] A, B;
+    logic [2:0] ALU_Sel;
+    logic [3:0] ALU_Out;
+    logic CarryOut;
 
-- The simulation is carried out using ModelSim 2020.1.
+    // Instantiate ALU
+    alu #(4) uut (
+        .A(A), 
+        .B(B), 
+        .ALU_Sel(ALU_Sel), 
+        .ALU_Out(ALU_Out), 
+        .CarryOut(CarryOut)
+    );
+// Write your ALU testbench code here
 
-- Waveforms will show the result of different ALU operations for the given inputs.
+```
+### Simulation Output
+
+The simulation is carried out using ModelSim 2020.1.
 
 (Insert waveform screenshot here after running simulation in ModelSim)
 
-## Result
+### Result
 
 The design and simulation of a 4-bit ALU using SystemVerilog HDL was successfully carried out in ModelSim 2020.1.
 The ALU performed arithmetic, logical, and shift operations correctly as verified from the simulation outputs.
+
