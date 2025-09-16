@@ -1,9 +1,9 @@
-# Experiment 1: Design and Simulation of an Arithmetic Logic Unit (ALU) using SystemVerilog
+# Experiment 1: ALU Design using Enumerated Data Types and Case Statements
 
 ---
 
 ## Aim  
-To design and simulate a **4-bit Arithmetic Logic Unit (ALU)** using **SystemVerilog HDL** and verify its functionality using **ModelSim 2020.1**.
+To design and simulate a **4-bit Arithmetic Logic Unit (ALU)** using **SystemVerilog HDL** with **Enumerated Data Types and Case Statements**, and verify its functionality using **ModelSim 2020.1**.
 
 ---
 
@@ -15,25 +15,25 @@ To design and simulate a **4-bit Arithmetic Logic Unit (ALU)** using **SystemVer
 ---
 
 ## Description about ALU  
-An **Arithmetic Logic Unit (ALU)** is the core component of a processor that performs arithmetic and logical operations. It takes two input operands and a control signal (opcode) to determine the operation to be executed.  
+An **Arithmetic Logic Unit (ALU)** is a combinational circuit that performs arithmetic and logical operations.  
+In this experiment, the ALU is designed using:  
+- **Enumerated Data Types** to represent ALU operations in a readable form.  
+- **Case Statements** to implement the functionality of each operation.  
 
-Common ALU operations include:  
-- **Arithmetic:** Addition, Subtraction, Multiplication, Division  
+This approach improves code readability, maintainability, and reduces errors compared to using raw binary values for control signals.  
+
+Common ALU operations included in this design are:  
+- **Arithmetic:** Addition, Subtraction  
 - **Logical:** AND, OR, XOR, NOT  
-- **Shift Operations:** Logical Shift Left, Logical Shift Right, Rotate  
-
-The ALU plays a crucial role in executing instructions in microprocessors and digital systems.
+- **Shift Operations:** Left Shift, Right Shift  
 
 ---
 
 ## Features
-- Designed in **SystemVerilog** for clarity and modularity  
-- Supports:
-  - Arithmetic: Addition, Subtraction  
-  - Logical: AND, OR, XOR, NOT  
-  - Shift Operations: Left Shift, Right Shift  
+- Uses **SystemVerilog Enumerated Types** for operation selection  
+- Implements ALU operations with **Case Statements**  
 - Parameterized design for scalability  
-- Testbench for functional verification  
+- Includes a **Testbench** for functional verification  
 - Compatible with **ModelSim 2020.1**  
 
 ---
@@ -45,27 +45,27 @@ The ALU plays a crucial role in executing instructions in microprocessors and di
 
 2. **Create a New Project**  
    - Go to `File → New → Project`.  
-   - Enter a project name (e.g., `ALU_Project`).  
+   - Enter a project name (e.g., `ALU_Enum_Project`).  
    - Set the project location.  
    - Click **OK**.  
 
 3. **Add SystemVerilog Source Files**  
-   - Create a new source file named `alu.sv` and type the ALU design code.  
-   - Create a new source file named `alu_tb.sv` and type the testbench code.  
+   - Create a new source file named `alu_enum.sv` and type the ALU design code.  
+   - Create a new source file named `alu_enum_tb.sv` and type the testbench code.  
 
 4. **Compile the Design and Testbench**  
-   - Select both files (`alu.sv` and `alu_tb.sv`).  
+   - Select both files (`alu_enum.sv` and `alu_enum_tb.sv`).  
    - Right-click → **Compile Selected**.  
    - Ensure there are no syntax errors.  
 
 5. **Start Simulation**  
    - Go to `Simulate → Start Simulation`.  
    - In the **Library window**, expand **work**.  
-   - Select the testbench module (`alu_tb`).  
+   - Select the testbench module (`alu_enum_tb`).  
    - Click **OK**.  
 
 6. **Add Signals to Waveform**  
-   - In the simulation window, select all signals (A, B, ALU_Sel, ALU_Out, CarryOut).  
+   - In the simulation window, select all signals (A, B, Operation, ALU_Out, CarryOut).  
    - Right-click → **Add to → Wave → Selected Signals**.  
 
 7. **Run Simulation**  
@@ -76,8 +76,8 @@ The ALU plays a crucial role in executing instructions in microprocessors and di
    - Or use the **Run button** to observe waveforms.  
 
 8. **Analyze Waveforms**  
-   - Verify the outputs of the ALU for different operations.  
-   - Check that addition, subtraction, logical operations, and shifts are working as expected.  
+   - Verify the outputs of the ALU for each enumerated operation.  
+   - Check that addition, subtraction, logical operations, and shifts are working correctly.  
 
 9. **Save Results**  
    - Save the waveform (`.wlf` file) for documentation.  
@@ -86,39 +86,18 @@ The ALU plays a crucial role in executing instructions in microprocessors and di
 
 ## SystemVerilog Code  
 
-### ALU Design (`alu.sv`)
+### ALU Design (`alu_enum.sv`)
 ```systemverilog
-module alu #(parameter WIDTH = 4) (
-    input  logic [WIDTH-1:0] A, B,
-    input  logic [2:0] ALU_Sel,
-    output logic [WIDTH-1:0] ALU_Out,
-    output logic CarryOut
-);
-
-    logic [WIDTH:0] tmp;
-
-// Write your ALU design code here
+// Write your ALU design code here using
+// - Enumerated Data Types for ALU operations
+// - Case Statements for operation selection
 
 ```
 ---
 
 ### ALU Testbench (`alu_tb.sv`)
 ```systemverilog
-module alu_tb;
 
-    logic [3:0] A, B;
-    logic [2:0] ALU_Sel;
-    logic [3:0] ALU_Out;
-    logic CarryOut;
-
-    // Instantiate ALU
-    alu #(4) uut (
-        .A(A), 
-        .B(B), 
-        .ALU_Sel(ALU_Sel), 
-        .ALU_Out(ALU_Out), 
-        .CarryOut(CarryOut)
-    );
 // Write your ALU testbench code here
 
 ```
@@ -130,6 +109,6 @@ The simulation is carried out using ModelSim 2020.1.
 
 ### Result
 
-The design and simulation of a 4-bit ALU using SystemVerilog HDL was successfully carried out in ModelSim 2020.1.
+The design and simulation of a 4-bit ALU using Enumerated Data Types and Case Statements in SystemVerilog HDL was successfully carried out in ModelSim 2020.1.
 The ALU performed arithmetic, logical, and shift operations correctly as verified from the simulation outputs.
 
