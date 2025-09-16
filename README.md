@@ -96,6 +96,8 @@ module alu #(parameter WIDTH = 4) (
 
 endmodule
 
+---
+
 ## Testbench Code
 
 ## Simulation Output
